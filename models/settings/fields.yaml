@@ -1,0 +1,39 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        favicon:
+            label: Favicon
+            type: mediafinder
+            mode: image
+            span: right
+            tab: dieterholvoet.meta::menu.settings_info.label
+        application_name:
+            label: Application name
+            type: text
+            span: left
+            tab: dieterholvoet.meta::menu.settings_info.label
+        google_site_verification:
+            label: dieterholvoet.meta::field.settings.google_site_verification.label
+            comment: dieterholvoet.meta::field.settings.google_site_verification.description
+            type: text
+            span: left
+            tab: dieterholvoet.meta::menu.settings_info.label
+        description:
+            label: Description
+            type: textarea
+            span: left
+            tab: dieterholvoet.meta::menu.settings_defaults.label
+        image:
+            label: Image
+            type: mediafinder
+            mode: image
+            span: right
+            tab: dieterholvoet.meta::menu.settings_defaults.label
+        color:
+            label: Color
+            type: colorpicker
+            span: left
+            tab: dieterholvoet.meta::menu.settings_defaults.label

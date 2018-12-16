@@ -1,0 +1,24 @@
+{
+    "name": "dieterholvoet/oc-meta-plugin",
+    "type": "october-plugin",
+    "description": "Component providing meta tags to inject in the document head tag.",
+    "keywords": [
+        "october",
+        "octobercms",
+        "meta",
+        "seo"
+    ],
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Dieter Holvoet",
+            "email": "dieter.holvoet@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "composer/installers": "~1.0"
+    },
+    "minimum-stability": "dev"
+}
