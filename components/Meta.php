@@ -101,24 +101,26 @@ class Meta extends ComponentBase
 
         $this->setProperty('full_title', $this->getFullTitle());
 
-        if ($this->property('og_image') !== null) {
-            if (PluginManager::instance()->exists('toughdeveloper.imageresizer')) {
-                /** @var Image $image */
-                $image = (new Image($this->property('og_image')))->resize(1200, 630);
-                $this->setProperty('og_image', $image->getCachedImagePath(true));
+        foreach (['og_image', 'twitter_summary_image'] as $propertyName) {
+            if ($this->property($propertyName) === null) {
+                continue;
             }
 
-            $image = $this->property('og_image');
+            if (PluginManager::instance()->exists('toughdeveloper.imageresizer')) {
+                /** @var Image $image */
+                $image = (new Image($this->property($propertyName)))->resize(1200, 630);
+                $url = $image->getCachedImagePath(true);
+                $path = parse_url($url, PHP_URL_PATH);
+                $this->setProperty($propertyName, $path);
+            }
 
-            if ($imageInfo = getimagesize($image)) {
+            $image = $this->property($propertyName);
+
+            if ($propertyName === 'og_image' && $imageInfo = getimagesize(base_path($image))) {
                 list($width, $height) = $imageInfo;
                 $this->setProperty('og_image_width', $width);
                 $this->setProperty('og_image_height', $height);
                 $this->setProperty('og_image_type', $imageInfo['mime']);
-            }
-
-            if ($this->property('twitter_summary_image') === null) {
-                $this->setProperty('twitter_summary_image', $image);
             }
         }
     }
