@@ -23,19 +23,9 @@ class Meta extends ComponentBase
     public function defineProperties()
     {
         return [
-            'title' => [
-                'title' => 'Title',
-                'description' => 'Page title',
-                'type' => 'string',
-            ],
             'url' => [
                 'title' => 'Website URL',
                 'description' => 'The main url of this website.',
-                'type' => 'string',
-            ],
-            'full_title' => [
-                'title' => 'The full title',
-                'description' => 'Combination of the page title and application name, used actual title.',
                 'type' => 'string',
             ],
             'description' => [
@@ -99,8 +89,6 @@ class Meta extends ComponentBase
             }
         }
 
-        $this->setProperty('full_title', $this->getFullTitle());
-
         foreach (['og_image', 'twitter_summary_image'] as $propertyName) {
             if ($this->property($propertyName) === null) {
                 continue;
@@ -143,7 +131,6 @@ class Meta extends ComponentBase
 
         return [
             'url' => url('/'),
-            'title' => $this->page->title,
             'application_name' => $settings->get('application_name'),
             'description' => $settings->get('description'),
             'google_site_verification' => $settings->get('google_site_verification'),
@@ -162,17 +149,5 @@ class Meta extends ComponentBase
 
             'twitter_summary_image' => $imageUrl,
         ];
-    }
-
-    protected function getFullTitle()
-    {
-        $title = $this->property('title');
-
-        if ($applicationName = $this->property('application_name')) {
-            $title .= ' | ';
-            $title .= $applicationName;
-        }
-
-        return $title;
     }
 }

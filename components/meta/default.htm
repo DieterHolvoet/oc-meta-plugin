@@ -1,3 +1,9 @@
+{% if __SELF__.property('application_name') %}
+    {% set fullTitle = this.page.title ~ ' | ' ~ __SELF__.property('application_name') %}
+{% else %}
+    {% set fullTitle = this.page.title %}
+{% endif %}
+
 <meta charset="utf-8">
 
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -6,7 +12,7 @@
 <meta name="MobileOptimized" content="width" />
 <meta name="HandheldFriendly" content="true" />
 
-<title>{{ __SELF__.property('full_title') }}</title>
+<title>{{ fullTitle }}</title>
 
 {% if __SELF__.property('description') %}
     <meta name="description" content="{{ __SELF__.property('description') }}" />
@@ -44,7 +50,7 @@
 {% endif %}
 
 <meta name="twitter:url" content="{{ __SELF__.property('url') }}">
-<meta name="twitter:title" content="{{ __SELF__.property('full_title') }}">
+<meta name="twitter:title" content="{{ fullTitle }}">
 
 {% if __SELF__.property('twitter_summary_image') %}
     <meta name="twitter:image" content="{{ __SELF__.property('twitter_summary_image') }}">
@@ -55,7 +61,7 @@
 {% endif %}
 
 <meta property="og:locale" content="{{ config('app.locale') }}" />
-<meta property="og:title" content="{{ __SELF__.property('full_title') }}" />
+<meta property="og:title" content="{{ fullTitle }}" />
 <meta property="og:url" content="{{ __SELF__.property('url') }}" />
 
 {% if __SELF__.property('og_image') %}
