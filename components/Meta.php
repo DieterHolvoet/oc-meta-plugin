@@ -104,7 +104,7 @@ class Meta extends ComponentBase
 
             $image = $this->property($propertyName);
 
-            if ($propertyName === 'og_image' && $imageInfo = getimagesize(base_path($image))) {
+            if ($propertyName === 'og_image' && file_exists(base_path($image)) && $imageInfo = getimagesize(base_path($image))) {
                 list($width, $height) = $imageInfo;
                 $this->setProperty('og_image_width', $width);
                 $this->setProperty('og_image_height', $height);
