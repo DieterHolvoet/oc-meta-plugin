@@ -59,8 +59,19 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-tags',
                 'class'       => Settings::class,
                 'order'       => 500,
-                'keywords'    => 'meta og'
+                'keywords'    => 'meta og',
+                'permissions' => ['dieterholvoet.meta.manage_settings'],
             ]
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'dieterholvoet.meta.manage_settings' => [
+                'label' => 'dieterholvoet.meta::plugin.permissions.manage_settings',
+                'tab' => 'dieterholvoet.meta::plugin.name',
+            ],
         ];
     }
 }
