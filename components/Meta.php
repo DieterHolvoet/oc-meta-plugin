@@ -28,6 +28,11 @@ class Meta extends ComponentBase
                 'description' => 'The main url of this website.',
                 'type' => 'string',
             ],
+            'title' => [
+                'title' => 'Title',
+                'description' => 'Page title',
+                'type' => 'string',
+            ],
             'description' => [
                 'title' => 'Description',
                 'description' => 'Page description',
@@ -132,6 +137,7 @@ class Meta extends ComponentBase
         return [
             'url' => url('/'),
             'application_name' => $settings->get('application_name'),
+            'title' => $this->page->title,
             'description' => $settings->get('description'),
             'google_site_verification' => $settings->get('google_site_verification'),
             'color' => $settings->get('color'),

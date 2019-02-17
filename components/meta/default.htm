@@ -1,7 +1,7 @@
 {% if __SELF__.property('application_name') %}
-    {% set fullTitle = this.page.title ~ ' | ' ~ __SELF__.property('application_name') %}
+    {% set fullTitle = __SELF__.property('title') ~ ' | ' ~ __SELF__.property('application_name') %}
 {% else %}
-    {% set fullTitle = this.page.title %}
+    {% set fullTitle = __SELF__.property('title') %}
 {% endif %}
 
 <meta charset="utf-8">
