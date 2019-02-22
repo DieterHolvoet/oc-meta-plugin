@@ -21,6 +21,12 @@ tabs:
             type: text
             span: left
             tab: dieterholvoet.meta::menu.settings_info.label
+        bing_site_verification:
+            label: dieterholvoet.meta::field.settings.bing_site_verification.label
+            comment: dieterholvoet.meta::field.settings.bing_site_verification.description
+            type: text
+            span: left
+            tab: dieterholvoet.meta::menu.settings_info.label
         description:
             label: Description
             type: textarea

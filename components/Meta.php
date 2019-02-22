@@ -140,6 +140,7 @@ class Meta extends ComponentBase
             'title' => $this->page->title,
             'description' => $settings->get('description'),
             'google_site_verification' => $settings->get('google_site_verification'),
+            'bing_site_verification' => $settings->get('bing_site_verification'),
             'color' => $settings->get('color'),
             'favicon' => $faviconUrl,
 
