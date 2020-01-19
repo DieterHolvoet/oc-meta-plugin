@@ -13,11 +13,6 @@ use System\Classes\SettingsManager;
 class Plugin extends PluginBase
 {
     /**
-     * @var array Plugin dependencies
-     */
-    public $require = ['ToughDeveloper.ImageResizer'];
-
-    /**
      * Returns information about this plugin.
      *
      * @return array

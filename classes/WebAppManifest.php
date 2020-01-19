@@ -3,10 +3,10 @@
 namespace DieterHolvoet\Meta\Classes;
 
 use Cache;
+use DieterHolvoet\ImageResizer\Classes\Image;
 use DieterHolvoet\Meta\Models\Settings;
 use October\Rain\Support\Traits\Singleton;
 use System\Behaviors\SettingsModel;
-use ToughDeveloper\ImageResizer\Classes\Image;
 
 class WebAppManifest
 {
@@ -42,17 +42,15 @@ class WebAppManifest
             $manifest['theme_color'] = $color;
         }
 
-        if ($favicon = $settings->get('favicon')) {
-            $favicon = new Image(config('cms.storage.media.path') . $favicon);
+        if ($faviconPath = $settings->get('favicon')) {
+            $faviconPath = implode(DIRECTORY_SEPARATOR, [config('cms.storage.media.folder'), $faviconPath]);
+            $faviconImage = new Image($faviconPath);
 
             foreach ([[192, 192], [512, 512]] as $dimensions) {
-                list($width, $height) = $dimensions;
-                /** @var Image $image */
-                $image = (clone $favicon)->resize($width, $height);
+                [$width, $height] = $dimensions;
 
                 $manifest['icons'][] = [
-                    'src' => $image->getCachedImagePath(true),
-                    'type' => mime_content_type($image->getCachedImagePath(false)),
+                    'src' => $faviconImage->resize($width, $height),
                     'sizes' => sprintf('%dx%d', $width, $height),
                 ];
             }
