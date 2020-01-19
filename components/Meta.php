@@ -3,12 +3,12 @@
 namespace DieterHolvoet\Meta\Components;
 
 use Cms\Classes\ComponentBase;
+use DieterHolvoet\ImageResizer\Classes\Image;
 use DieterHolvoet\Meta\Models\Settings;
 use RainLab\Translate\Behaviors\TranslatableModel;
 use System\Behaviors\SettingsModel;
 use System\Classes\MediaLibrary;
 use System\Classes\PluginManager;
-use ToughDeveloper\ImageResizer\Classes\Image;
 
 class Meta extends ComponentBase
 {
@@ -99,12 +99,9 @@ class Meta extends ComponentBase
                 continue;
             }
 
-            if (PluginManager::instance()->exists('toughdeveloper.imageresizer')) {
-                /** @var Image $image */
+            if (PluginManager::instance()->exists('dieterholvoet.imageresizer')) {
                 $image = (new Image($this->property($propertyName)))->resize(1200, 630);
-                $url = $image->getCachedImagePath(true);
-                $path = parse_url($url, PHP_URL_PATH);
-                $this->setProperty($propertyName, $path);
+                $this->setProperty($propertyName, $image);
             }
 
             $image = $this->property($propertyName);
