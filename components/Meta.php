@@ -119,6 +119,8 @@ class Meta extends ComponentBase
     {
         $imageUrl = null;
         $faviconUrl = null;
+        $appleTouchIconUrl = null;
+        $safariPinnedTabIconUrl = null;
 
         /** @var Settings|SettingsModel|TranslatableModel $settings */
         $settings = Settings::instance();
@@ -131,6 +133,14 @@ class Meta extends ComponentBase
             $faviconUrl = MediaLibrary::url($favicon);
         }
 
+        if ($appleTouchIcon = $settings->get('apple_touch_icon')) {
+            $appleTouchIconUrl = MediaLibrary::url($appleTouchIcon);
+        }
+
+        if ($safariPinnedTabIcon = $settings->get('safari_pinned_tab')) {
+            $safariPinnedTabIconUrl = MediaLibrary::url($safariPinnedTabIcon);
+        }
+
         return [
             'url' => url('/'),
             'application_name' => $settings->get('application_name'),
@@ -140,6 +150,8 @@ class Meta extends ComponentBase
             'bing_site_verification' => $settings->get('bing_site_verification'),
             'color' => $settings->get('color'),
             'favicon' => $faviconUrl,
+            'apple_touch_icon' => $appleTouchIconUrl,
+            'safari_pinned_tab' => $safariPinnedTabIconUrl,
 
             /*
             Image for Facebook

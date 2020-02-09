@@ -10,6 +10,18 @@ tabs:
             mode: image
             span: right
             tab: dieterholvoet.meta::menu.settings_info.label
+        apple_touch_icon:
+            label: Apple touch icon
+            type: mediafinder
+            mode: image
+            span: right
+            tab: dieterholvoet.meta::menu.settings_info.label
+        safari_pinned_tab:
+            label: Safari pinned tab icon
+            type: mediafinder
+            mode: image
+            span: right
+            tab: dieterholvoet.meta::menu.settings_info.label
         application_name:
             label: Application name
             type: text
