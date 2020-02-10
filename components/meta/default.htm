@@ -24,15 +24,15 @@
 
 {% if __SELF__.property('favicon') %}
     <link rel="shortcut icon" href="{{ __SELF__.property('favicon') }}" type="image/png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ __SELF__.property('favicon') | resize(32, 32) }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ __SELF__.property('favicon') | resize(16, 16) }}">
-    <meta name="msapplication-TileImage" content="{{ __SELF__.property('favicon') | resize(144, 144) }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ __SELF__.property('favicon') | image(32, 32) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ __SELF__.property('favicon') | image(16, 16) }}">
+    <meta name="msapplication-TileImage" content="{{ __SELF__.property('favicon') | image(144, 144) }}" />
 {% endif %}
 
 {% if __SELF__.property('apple_touch_icon') %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ __SELF__.property('apple_touch_icon') }}">
 {% elseif __SELF__.property('favicon') %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ __SELF__.property('favicon') | resize(180, 180) }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ __SELF__.property('favicon') | image(180, 180) }}">
 {% endif %}
 
 {% if __SELF__.property('safari_pinned_tab') and __SELF__.property('color') %}

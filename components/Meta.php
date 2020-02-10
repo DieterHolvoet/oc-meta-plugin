@@ -100,8 +100,19 @@ class Meta extends ComponentBase
             }
 
             if (PluginManager::instance()->exists('dieterholvoet.imageresizer')) {
-                $image = (new Image($this->property($propertyName)))->resize(1200, 630);
-                $this->setProperty($propertyName, $image);
+                $settings = \DieterHolvoet\ImageResizer\Models\Settings::instance();
+                $parameters = $settings->getParameters()
+                    ->setWidth(1200)
+                    ->setHeight(630);
+
+                try {
+                    $image = Image::fromPath($this->property($propertyName));
+                    $url = $settings->getProcessor()->getUrl($image, $parameters);
+                } catch (\Exception $e) {
+                    return null;
+                }
+
+                $this->setProperty($propertyName, $url);
             }
 
             $image = $this->property($propertyName);
