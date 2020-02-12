@@ -23,7 +23,7 @@
 <link rel="manifest" href="/manifest.json">
 
 {% if __SELF__.property('favicon') %}
-    <link rel="shortcut icon" href="{{ __SELF__.property('favicon') }}" type="image/png" />
+    <link rel="shortcut icon" href="{{ __SELF__.property('favicon') | image }}" type="image/png" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ __SELF__.property('favicon') | image(32, 32) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ __SELF__.property('favicon') | image(16, 16) }}">
     <meta name="msapplication-TileImage" content="{{ __SELF__.property('favicon') | image(144, 144) }}" />

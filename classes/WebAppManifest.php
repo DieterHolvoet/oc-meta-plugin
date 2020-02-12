@@ -44,15 +44,26 @@ class WebAppManifest
 
         if ($faviconPath = $settings->get('favicon')) {
             $faviconPath = implode(DIRECTORY_SEPARATOR, [config('cms.storage.media.folder'), $faviconPath]);
-            $faviconImage = new Image($faviconPath);
+            $settings = \DieterHolvoet\ImageResizer\Models\Settings::instance();
+            $processor = $settings->getProcessor();
 
-            foreach ([[192, 192], [512, 512]] as $dimensions) {
-                [$width, $height] = $dimensions;
+            try {
+                $image = Image::fromPath($faviconPath);
+            } catch (\Exception $e) {
+            }
 
-                $manifest['icons'][] = [
-                    'src' => $faviconImage->resize($width, $height),
-                    'sizes' => sprintf('%dx%d', $width, $height),
-                ];
+            if (isset($image)) {
+                foreach ([[192, 192], [512, 512]] as $dimensions) {
+                    [$width, $height] = $dimensions;
+                    $parameters = $settings->getParameters()
+                        ->setWidth($width)
+                        ->setHeight($height);
+
+                    $manifest['icons'][] = [
+                        'src' => $processor->getUrl($image, $parameters),
+                        'sizes' => sprintf('%dx%d', $width, $height),
+                    ];
+                }
             }
         }
 
